@@ -131,9 +131,9 @@ func (w Walking) Calories() float64 {
 	if w.Height == 0 {
 		return 0
 	}
-	meanSpeedMps := w.meanSpeed()
+	meanSpeedMps := w.meanSpeed() * KmHInMsec
 	meanSpeedSquared := math.Pow(meanSpeedMps, 2)
-	calories := ((CaloriesWeightMultiplier*w.Weight + (meanSpeedSquared/(w.Height*CmInM))*CaloriesSpeedHeightMultiplier*w.Weight) * w.Duration.Hours() * MinInHours)
+	calories := ((CaloriesWeightMultiplier*w.Weight + (meanSpeedSquared/(w.Height/CmInM))*CaloriesSpeedHeightMultiplier*w.Weight) * w.Duration.Hours() * MinInHours)
 
 	return calories
 }
